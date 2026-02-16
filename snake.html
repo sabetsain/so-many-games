@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="./assets/styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="terminal-header">
+            <div class="terminal-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="terminal-title">user@retrobox:~$ snake</div>
+        </div>
+        <div class="terminal-body">
+            <a href="./index.html" class="back-link">← exit</a>
+            <h1>SNAKE</h1>
+            <div class="score">SCORE: <span id="score">0</span></div>
+            <canvas id="gameCanvas" width="400" height="400"></canvas>
+            <div class="controls">[ARROW KEYS] move | [SPACE] restart</div>
+            <div class="prompt">user@retrobox:~$ <span class="cursor"></span></div>
+        </div>
+        <div class="game-over" id="gameOver">
+            <h2>PROCESS TERMINATED</h2>
+            <p style="font-size: 1.5em; margin-bottom: 20px;">> Final Score: <span id="finalScore">0</span></p>
+            <button onclick="restartGame()">[RESTART]</button>
+        </div>
+    </div>
+
+    <script src="./assets/snake.js"></script>
+</body>
+</html>
