@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Press+Start+2P&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IM+Fell+English:ital@0;1&display=swap');
 
 /* ============================================
    RESET & BASE
@@ -126,6 +126,16 @@ body {
 .game-card--yellow .game-card-play {
     background: rgba(61, 34, 0, 0.12);
     color: #3D2200;
+}
+
+/* Green card */
+.game-card--green {
+    background: linear-gradient(135deg, #5a7247 0%, #6b8a55 100%);
+    box-shadow: 0 6px 24px rgba(90, 114, 71, 0.35);
+    color: #fff;
+}
+.game-card--green:hover {
+    box-shadow: 0 12px 36px rgba(90, 114, 71, 0.45);
 }
 
 /* Locked state */
@@ -504,5 +514,400 @@ body {
 
     .game-over-box h2 {
         font-size: 1em;
+    }
+}
+
+
+/* ============================================
+   WORD GUESSER — LIBRARY / OLD BOOK THEME
+   ============================================ */
+
+.wordguesser-page {
+    --wp-parchment: #ede3d0;
+    --wp-parchment-light: #f5f0e4;
+    --wp-parchment-dark: #d9cebc;
+    --wp-ink: #1e120a;
+    --wp-ink-mid: #3d2b1f;
+    --wp-ink-soft: #6b5647;
+    --wp-sepia: #8b7355;
+    --wp-correct: #4a6e3a;
+    --wp-present: #9e7c2e;
+    --wp-absent: #5e564d;
+    --wp-tile-border: #b3a48e;
+    --wp-key-bg: #d6ccb8;
+    --wp-shadow: rgba(30, 18, 10, 0.18);
+
+    font-family: 'Libre Baskerville', Georgia, serif;
+    background: var(--wp-parchment);
+    color: var(--wp-ink);
+    background-image:
+        url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"),
+        linear-gradient(175deg, var(--wp-parchment-light) 0%, var(--wp-parchment) 40%, var(--wp-parchment-dark) 100%);
+    background-attachment: fixed;
+}
+
+/* Candlelight vignette — warm amber glow from center, dark edges */
+.wordguesser-page::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 50% 30%, rgba(180, 140, 60, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(30, 18, 10, 0.12) 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Cabinet — the page itself */
+.wg-cabinet {
+    max-width: 500px;
+    width: 100%;
+    padding: 0 20px 28px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Header — with decorative rule */
+.wg-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 0 14px;
+    border-bottom: 1px solid var(--wp-tile-border);
+    margin-bottom: 22px;
+    position: relative;
+}
+
+/* Double-rule under header */
+.wg-header::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 20%;
+    right: 20%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--wp-tile-border), transparent);
+}
+
+.wg-back {
+    font-family: 'IM Fell English', serif;
+    font-size: 0.9em;
+    color: var(--wp-ink-mid);
+    text-decoration: none;
+    padding: 5px 14px;
+    border: 1px solid var(--wp-tile-border);
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    background: var(--wp-parchment-light);
+}
+
+.wg-back:hover {
+    background: var(--wp-ink-mid);
+    color: var(--wp-parchment-light);
+    border-color: var(--wp-ink-mid);
+}
+
+.wg-title {
+    font-family: 'IM Fell English', serif;
+    font-size: 1.5em;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--wp-ink);
+    letter-spacing: 0.04em;
+}
+
+.wg-spacer {
+    width: 72px;
+}
+
+/* Board */
+.wg-board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 14px;
+}
+
+.wg-row {
+    display: flex;
+    gap: 7px;
+}
+
+/* Tiles — inked squares on parchment */
+.wg-tile {
+    width: 60px;
+    height: 60px;
+    border: 2px solid var(--wp-tile-border);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.7em;
+    font-weight: 700;
+    color: var(--wp-ink);
+    text-transform: uppercase;
+    background: var(--wp-parchment-light);
+    box-shadow: inset 0 1px 4px rgba(30, 18, 10, 0.05);
+    transition: border-color 0.15s ease;
+}
+
+.wg-tile--filled {
+    border-color: var(--wp-ink-soft);
+    animation: wg-pop 0.1s ease-in-out;
+}
+
+/* Revealed tiles — bold, high-contrast text */
+.wg-tile--revealed {
+    border-color: transparent;
+    box-shadow: 1px 2px 5px var(--wp-shadow);
+}
+
+.wg-tile--correct {
+    background: var(--wp-correct);
+    color: #f5f0e4;
+}
+
+.wg-tile--present {
+    background: var(--wp-present);
+    color: #f5f0e4;
+}
+
+.wg-tile--absent {
+    background: var(--wp-absent);
+    color: #e0dbd3;
+}
+
+/* Tile animations */
+@keyframes wg-flip {
+    0%   { transform: rotateX(0deg); }
+    50%  { transform: rotateX(-90deg); }
+    100% { transform: rotateX(0deg); }
+}
+
+.wg-tile--flip {
+    animation: wg-flip 0.5s ease-in-out;
+}
+
+@keyframes wg-pop {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+
+@keyframes wg-shake {
+    0%, 100% { transform: translateX(0); }
+    20%      { transform: translateX(-5px); }
+    40%      { transform: translateX(5px); }
+    60%      { transform: translateX(-3px); }
+    80%      { transform: translateX(3px); }
+}
+
+.wg-row--shake {
+    animation: wg-shake 0.35s ease-in-out;
+}
+
+/* Message bar — ink on parchment toast */
+.wg-message {
+    text-align: center;
+    font-family: 'IM Fell English', serif;
+    font-size: 0.95em;
+    color: var(--wp-parchment-light);
+    background: var(--wp-ink);
+    padding: 10px 22px;
+    border-radius: 4px;
+    margin: 0 auto 14px;
+    max-width: 260px;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+    box-shadow: 0 2px 8px var(--wp-shadow);
+}
+
+.wg-message--visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Keyboard — letterpress keys */
+.wg-keyboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+}
+
+.wg-keyboard-row {
+    display: flex;
+    gap: 5px;
+}
+
+.wg-key {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.8em;
+    font-weight: 700;
+    min-width: 34px;
+    height: 50px;
+    border: 1px solid var(--wp-tile-border);
+    border-bottom: 3px solid rgba(30, 18, 10, 0.15);
+    border-radius: 4px;
+    background: var(--wp-key-bg);
+    color: var(--wp-ink);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.12s ease;
+    box-shadow: 0 2px 3px var(--wp-shadow);
+    padding: 0 3px;
+}
+
+.wg-key:hover {
+    background: var(--wp-parchment-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 5px var(--wp-shadow);
+}
+
+.wg-key:active {
+    transform: translateY(2px);
+    box-shadow: 0 0px 1px var(--wp-shadow);
+    border-bottom-width: 1px;
+}
+
+.wg-key--wide {
+    min-width: 58px;
+    font-size: 0.65em;
+    letter-spacing: 0.04em;
+}
+
+/* Key state colors — high contrast text on each */
+.wg-key--correct {
+    background: var(--wp-correct);
+    color: #f5f0e4;
+    border-color: #3d5c30;
+    border-bottom-color: #2e4524;
+}
+
+.wg-key--present {
+    background: var(--wp-present);
+    color: #f5f0e4;
+    border-color: #866825;
+    border-bottom-color: #6e551d;
+}
+
+.wg-key--absent {
+    background: var(--wp-absent);
+    color: #ddd8d0;
+    border-color: #4e4740;
+    border-bottom-color: #3e3833;
+}
+
+/* Result overlay */
+.wg-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(30, 18, 10, 0.55);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(3px);
+}
+
+.wg-result {
+    background: var(--wp-parchment);
+    border: 2px solid var(--wp-ink-mid);
+    border-radius: 4px;
+    padding: 32px 36px;
+    text-align: center;
+    max-width: 340px;
+    width: 90%;
+    box-shadow:
+        0 4px 20px rgba(30, 18, 10, 0.35),
+        inset 0 0 40px rgba(245, 240, 228, 0.3);
+    background-image:
+        url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    position: relative;
+}
+
+/* Decorative flourish above result title */
+.wg-result::before {
+    content: '\2767';
+    display: block;
+    font-size: 1.4em;
+    color: var(--wp-sepia);
+    margin-bottom: 8px;
+    opacity: 0.5;
+}
+
+.wg-result h2 {
+    font-family: 'IM Fell English', serif;
+    font-size: 1.6em;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--wp-ink);
+    margin-bottom: 14px;
+}
+
+.wg-result p {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.9em;
+    color: var(--wp-ink-mid);
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.wg-result-word {
+    font-size: 1em;
+    color: var(--wp-ink);
+}
+
+.wg-result-word strong {
+    letter-spacing: 0.12em;
+    color: var(--wp-correct);
+    font-size: 1.1em;
+}
+
+.wg-result-next {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--wp-tile-border);
+    font-size: 0.8em;
+    color: var(--wp-ink-soft);
+}
+
+.wg-result-next span {
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 700;
+    color: var(--wp-ink);
+}
+
+/* Word Guesser responsive */
+@media (max-width: 500px) {
+    .wg-tile {
+        width: 50px;
+        height: 50px;
+        font-size: 1.4em;
+    }
+
+    .wg-title {
+        font-size: 1.2em;
+    }
+
+    .wg-key {
+        min-width: 28px;
+        height: 44px;
+        font-size: 0.7em;
+    }
+
+    .wg-key--wide {
+        min-width: 48px;
+        font-size: 0.55em;
+    }
+
+    .wg-cabinet {
+        padding: 0 10px 20px;
     }
 }

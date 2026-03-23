@@ -4,7 +4,7 @@
   "description": "A collection of browser-based games that can be hosted on GitHub Pages and embedded in SharePoint.",
   "main": "index.js",
   "scripts": {
-    "test": "node --test tests/snake.test.js"
+    "test": "node --test tests/snake.test.js tests/wordguesser.test.js"
   },
   "keywords": [],
   "author": "",

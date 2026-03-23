@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Guesser &mdash; VOTD Games</title>
+    <link rel="stylesheet" href="./assets/styles.css">
+</head>
+<body class="wordguesser-page">
+    <div class="wg-cabinet">
+        <div class="wg-header">
+            <a href="./index.html" class="wg-back">&laquo; Menu</a>
+            <div class="wg-title">Word Guesser</div>
+            <div class="wg-spacer"></div>
+        </div>
+
+        <div class="wg-board" id="board"></div>
+
+        <div id="messageBar" class="wg-message"></div>
+
+        <div class="wg-keyboard" id="keyboard"></div>
+    </div>
+
+    <div class="wg-overlay" id="resultOverlay">
+        <div class="wg-result">
+            <h2 id="resultTitle"></h2>
+            <p id="resultMessage"></p>
+            <p class="wg-result-word">The word was: <strong id="resultWord"></strong></p>
+            <p class="wg-result-next">Next word in <span id="nextWordTimer">--:--:--</span></p>
+        </div>
+    </div>
+
+    <script src="./assets/wordguesser.js"></script>
+</body>
+</html>
