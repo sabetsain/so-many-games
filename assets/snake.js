@@ -88,12 +88,12 @@ function update() {
 }
 
 function draw() {
-    // Clear canvas
-    ctx.fillStyle = '#000000';
+    // Clear canvas — aged parchment background
+    ctx.fillStyle = '#f4ead5';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Draw grid (subtle terminal grid)
-    ctx.strokeStyle = '#0a0a0a';
+    // Draw grid (subtle ink grid like graph paper)
+    ctx.strokeStyle = 'rgba(44, 24, 16, 0.06)';
     ctx.lineWidth = 1;
     for (let i = 0; i <= tileCount; i++) {
         ctx.beginPath();
@@ -106,34 +106,34 @@ function draw() {
         ctx.stroke();
     }
 
-    // Draw snake (terminal green blocks)
+    // Draw snake (ink-colored, like drawn on paper)
     snake.forEach((segment, index) => {
         if (index === 0) {
-            // Head - brighter green with slight glow
-            ctx.fillStyle = '#33ff00';
-            ctx.shadowBlur = 5;
-            ctx.shadowColor = '#33ff00';
+            // Head — dark ink with warm glow
+            ctx.fillStyle = '#2c1810';
+            ctx.shadowBlur = 4;
+            ctx.shadowColor = 'rgba(44, 24, 16, 0.4)';
         } else {
-            // Body - slightly darker
-            ctx.fillStyle = '#22cc00';
+            // Body — slightly lighter ink
+            ctx.fillStyle = '#4a3728';
             ctx.shadowBlur = 2;
-            ctx.shadowColor = '#22cc00';
+            ctx.shadowColor = 'rgba(44, 24, 16, 0.2)';
         }
-        
+
         ctx.fillRect(
             segment.x * gridSize + 2,
             segment.y * gridSize + 2,
             gridSize - 4,
             gridSize - 4
         );
-        
+
         ctx.shadowBlur = 0;
     });
 
-    // Draw food (terminal red/orange block)
-    ctx.fillStyle = '#ff4444';
-    ctx.shadowBlur = 8;
-    ctx.shadowColor = '#ff4444';
+    // Draw food (red wax seal / berry)
+    ctx.fillStyle = '#8b2500';
+    ctx.shadowBlur = 6;
+    ctx.shadowColor = 'rgba(139, 37, 0, 0.4)';
     ctx.fillRect(
         food.x * gridSize + 3,
         food.y * gridSize + 3,
