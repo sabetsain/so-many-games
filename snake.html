@@ -7,41 +7,36 @@
     <link rel="stylesheet" href="./assets/styles.css">
 </head>
 <body class="snake-page">
-    <div class="game-container">
-        <!-- Cockpit header bar -->
-        <div class="cockpit-header">
-            <a href="./index.html" class="back-link">&larr; MENU</a>
-            <div class="cockpit-title">
-                <span class="cockpit-flicker">SYS</span>://SNAKE
-            </div>
-            <div class="cockpit-score">
-                SCORE: <span id="score" class="score-value">0</span>
+    <!-- CRT screen housing -->
+    <div class="arcade-cabinet">
+        <!-- Top bar -->
+        <div class="arcade-header">
+            <a href="./index.html" class="back-link">&laquo; MENU</a>
+            <div class="arcade-title">SNAKE</div>
+            <div class="arcade-score">
+                SCORE <span id="score" class="score-digits">000</span>
             </div>
         </div>
 
-        <!-- Game viewport -->
-        <div class="game-viewport">
-            <div class="scanlines"></div>
+        <!-- CRT screen -->
+        <div class="crt-screen">
+            <div class="crt-scanlines"></div>
+            <div class="crt-glow"></div>
             <canvas id="gameCanvas" width="400" height="400"></canvas>
-            <div class="viewport-corner tl"></div>
-            <div class="viewport-corner tr"></div>
-            <div class="viewport-corner bl"></div>
-            <div class="viewport-corner br"></div>
         </div>
 
-        <!-- Controls bar -->
-        <div class="cockpit-controls">
-            <span class="control-hint">[ARROWS] NAVIGATE</span>
-            <span class="control-divider">&bull;</span>
-            <span class="control-hint">[SPACE] RESTART</span>
+        <!-- Bottom bar -->
+        <div class="arcade-footer">
+            <span>&uarr;&darr;&larr;&rarr; MOVE</span>
+            <span>SPACE RESTART</span>
         </div>
 
         <!-- Game over overlay -->
         <div class="game-over" id="gameOver">
-            <div class="game-over-inner">
-                <div class="game-over-glitch" data-text="GAME OVER">GAME OVER</div>
-                <p class="game-over-score">FINAL SCORE: <span id="finalScore">0</span></p>
-                <button onclick="restartGame()">RESTART MISSION</button>
+            <div class="game-over-box">
+                <h2>GAME OVER</h2>
+                <p>SCORE: <span id="finalScore">0</span></p>
+                <button onclick="restartGame()">INSERT COIN</button>
             </div>
         </div>
     </div>

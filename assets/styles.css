@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Press+Start+2P&display=swap');
 
 /* ============================================
    RESET & BASE
@@ -15,208 +15,200 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    position: relative;
     -webkit-font-smoothing: antialiased;
 }
 
 /* ============================================
-   MENU PAGE — PLAYFUL & NEUTRAL
+   MENU PAGE
    ============================================ */
 
 .menu-page {
-    font-family: 'Nunito', system-ui, sans-serif;
-    background: #fafafa;
-    color: #2d2d2d;
+    font-family: 'Baloo 2', cursive, sans-serif;
+    background: #ffffff;
+    color: #222;
 }
 
 .home-container {
-    max-width: 780px;
+    max-width: 800px;
     width: 100%;
-    padding: 48px 28px 36px;
+    padding: 52px 32px 40px;
 }
 
+/* ---- Header ---- */
 .home-header {
     text-align: center;
-    margin-bottom: 48px;
-    animation: fadeDown 0.6s ease-out;
-}
-
-.home-logo {
-    margin-bottom: 14px;
-}
-
-.logo-icon {
-    font-size: 3em;
-    display: inline-block;
-    animation: wiggle 2s ease-in-out infinite;
-}
-
-@keyframes wiggle {
-    0%, 100% { transform: rotate(0deg); }
-    25% { transform: rotate(-8deg); }
-    75% { transform: rotate(8deg); }
+    margin-bottom: 52px;
+    animation: dropIn 0.5s ease-out;
 }
 
 .home-header h1 {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Baloo 2', cursive;
     font-weight: 800;
-    font-size: 2.8em;
-    color: #1a1a1a;
-    letter-spacing: -0.02em;
+    font-size: 3.4em;
+    color: #222;
+    letter-spacing: -0.01em;
     line-height: 1.1;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
+
+/* Colored first letters */
+.title-red { color: #E63946; }
+.title-blue { color: #2D6AE0; }
+.title-yellow { color: #F5A623; }
 
 .home-header p {
-    font-size: 1.2em;
-    font-weight: 400;
-    color: #888;
-    letter-spacing: 0.01em;
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.3em;
+    font-weight: 500;
+    color: #666;
 }
 
-/* ============================================
-   GAMES GRID
-   ============================================ */
-
+/* ---- Grid ---- */
 .games-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 28px;
 }
 
-/* ============================================
-   GAME CARDS — BOLD COLOR BLOCKS
-   ============================================ */
-
+/* ---- Cards ---- */
 .game-card {
-    border-radius: 18px;
+    border-radius: 20px;
     text-decoration: none;
-    color: #fff;
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
     position: relative;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    align-items: center;
+    text-align: center;
+    padding: 32px 20px 0;
+    min-height: 260px;
     cursor: pointer;
-    min-height: 240px;
-}
-
-.game-card--red {
-    background: linear-gradient(135deg, #ff4757 0%, #ff6b81 100%);
-    box-shadow: 0 8px 30px rgba(255, 71, 87, 0.3);
-}
-
-.game-card--blue {
-    background: linear-gradient(135deg, #3742fa 0%, #5f68fa 100%);
-    box-shadow: 0 8px 30px rgba(55, 66, 250, 0.25);
-}
-
-.game-card--yellow {
-    background: linear-gradient(135deg, #ffa502 0%, #ffbe3d 100%);
-    box-shadow: 0 8px 30px rgba(255, 165, 2, 0.25);
-    color: #3d2800;
+    overflow: hidden;
 }
 
 .game-card:hover {
-    transform: translateY(-6px) scale(1.02);
+    transform: translateY(-8px);
 }
 
+/* Red card */
+.game-card--red {
+    background: #E63946;
+    box-shadow: 0 6px 24px rgba(230, 57, 70, 0.35);
+    color: #fff;
+}
 .game-card--red:hover {
-    box-shadow: 0 14px 40px rgba(255, 71, 87, 0.4);
+    box-shadow: 0 12px 36px rgba(230, 57, 70, 0.45);
 }
 
+/* Blue card */
+.game-card--blue {
+    background: #2D6AE0;
+    box-shadow: 0 6px 24px rgba(45, 106, 224, 0.3);
+    color: #fff;
+}
 .game-card--blue:hover {
-    box-shadow: 0 14px 40px rgba(55, 66, 250, 0.35);
+    box-shadow: 0 12px 36px rgba(45, 106, 224, 0.4);
 }
 
+/* Yellow card */
+.game-card--yellow {
+    background: #F5A623;
+    box-shadow: 0 6px 24px rgba(245, 166, 35, 0.35);
+    color: #3D2200;
+}
 .game-card--yellow:hover {
-    box-shadow: 0 14px 40px rgba(255, 165, 2, 0.35);
+    box-shadow: 0 12px 36px rgba(245, 166, 35, 0.45);
+}
+.game-card--yellow .game-card-number {
+    background: rgba(61, 34, 0, 0.15);
+    color: #3D2200;
+}
+.game-card--yellow .game-card-play {
+    background: rgba(61, 34, 0, 0.12);
+    color: #3D2200;
 }
 
+/* Locked state */
 .game-card--locked {
-    opacity: 0.55;
-    cursor: not-allowed;
+    opacity: 0.5;
+    cursor: default;
     pointer-events: none;
 }
 
-/* Badge (number) */
-.game-card-badge {
+/* Number badge */
+.game-card-number {
     position: absolute;
-    top: 16px;
-    right: 16px;
-    font-family: 'Nunito', sans-serif;
+    top: 14px;
+    right: 14px;
+    font-family: 'Baloo 2', cursive;
     font-weight: 800;
-    font-size: 0.8em;
+    font-size: 0.75em;
     background: rgba(255, 255, 255, 0.25);
-    width: 32px;
-    height: 32px;
+    color: #fff;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    backdrop-filter: blur(4px);
 }
 
-/* Card body */
-.game-card-body {
-    padding: 28px 24px 16px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
+/* Icon */
 .game-card-icon {
-    font-size: 2.6em;
-    margin-bottom: 12px;
+    font-size: 3em;
     display: block;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+    margin-bottom: 10px;
 }
 
+/* Title */
 .game-card h2 {
-    font-family: 'Nunito', sans-serif;
-    font-size: 1.5em;
+    font-family: 'Baloo 2', cursive;
     font-weight: 800;
-    margin-bottom: 6px;
-    letter-spacing: -0.01em;
+    font-size: 1.6em;
+    margin-bottom: 4px;
 }
 
+/* Description */
 .game-card p {
-    font-size: 0.95em;
-    font-weight: 400;
+    font-family: 'Baloo 2', cursive;
+    font-weight: 500;
+    font-size: 1em;
     opacity: 0.85;
-    line-height: 1.5;
+    line-height: 1.4;
+    margin-bottom: 16px;
 }
 
-/* Play / Soon action bar */
-.game-card-action {
-    padding: 14px 24px;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 700;
-    font-size: 0.95em;
-    letter-spacing: 0.04em;
+/* Play / Soon strip */
+.game-card-play {
+    margin-top: auto;
+    width: calc(100% + 40px);
+    margin-left: -20px;
+    margin-right: -20px;
+    padding: 12px 0;
+    font-family: 'Baloo 2', cursive;
+    font-weight: 800;
+    font-size: 0.9em;
+    letter-spacing: 0.12em;
     text-align: center;
-    background: rgba(0, 0, 0, 0.12);
-    backdrop-filter: blur(4px);
+    background: rgba(255, 255, 255, 0.18);
+    color: #fff;
 }
 
 /* Staggered entrance */
 .game-card {
-    animation: cardPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    animation: cardBounce 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
+.game-card:nth-child(1) { animation-delay: 0.08s; }
+.game-card:nth-child(2) { animation-delay: 0.18s; }
+.game-card:nth-child(3) { animation-delay: 0.28s; }
+.game-card:nth-child(4) { animation-delay: 0.38s; }
+.game-card:nth-child(5) { animation-delay: 0.48s; }
+.game-card:nth-child(6) { animation-delay: 0.58s; }
 
-.game-card:nth-child(1) { animation-delay: 0.1s; }
-.game-card:nth-child(2) { animation-delay: 0.2s; }
-.game-card:nth-child(3) { animation-delay: 0.3s; }
-.game-card:nth-child(4) { animation-delay: 0.4s; }
-.game-card:nth-child(5) { animation-delay: 0.5s; }
-.game-card:nth-child(6) { animation-delay: 0.6s; }
-
-@keyframes cardPop {
+@keyframes cardBounce {
     from {
         opacity: 0;
-        transform: translateY(24px) scale(0.95);
+        transform: translateY(30px) scale(0.92);
     }
     to {
         opacity: 1;
@@ -224,333 +216,10 @@ body {
     }
 }
 
-/* ============================================
-   FOOTER
-   ============================================ */
-
-.footer {
-    margin-top: 44px;
-    text-align: center;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
-}
-
-.footer p {
-    font-size: 0.85em;
-    color: #bbb;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-}
-
-/* ============================================
-   MENU PAGE RESPONSIVE
-   ============================================ */
-
-@media (max-width: 600px) {
-    .home-header h1 {
-        font-size: 2em;
-    }
-
-    .games-grid {
-        grid-template-columns: 1fr;
-        gap: 18px;
-    }
-
-    .home-container {
-        padding: 32px 16px 28px;
-    }
-}
-
-/* ============================================
-   SNAKE PAGE — RETRO-FUTURISTIC / 80s SCI-FI
-   ============================================ */
-
-.snake-page {
-    font-family: 'Share Tech Mono', 'Courier New', monospace;
-    background: #0a0a12;
-    color: #00f0ff;
-    overflow: hidden;
-}
-
-/* Starfield / deep space background */
-.snake-page::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background:
-        radial-gradient(1px 1px at 10% 20%, rgba(255, 255, 255, 0.5), transparent),
-        radial-gradient(1px 1px at 30% 70%, rgba(255, 255, 255, 0.3), transparent),
-        radial-gradient(1px 1px at 50% 10%, rgba(255, 255, 255, 0.4), transparent),
-        radial-gradient(1px 1px at 70% 40%, rgba(255, 255, 255, 0.3), transparent),
-        radial-gradient(1px 1px at 90% 80%, rgba(255, 255, 255, 0.5), transparent),
-        radial-gradient(1px 1px at 15% 55%, rgba(255, 255, 255, 0.2), transparent),
-        radial-gradient(1px 1px at 45% 90%, rgba(255, 255, 255, 0.4), transparent),
-        radial-gradient(1px 1px at 80% 15%, rgba(255, 255, 255, 0.3), transparent),
-        radial-gradient(1px 1px at 60% 60%, rgba(255, 255, 255, 0.2), transparent),
-        radial-gradient(1px 1px at 25% 35%, rgba(255, 255, 255, 0.35), transparent),
-        radial-gradient(ellipse at 50% 50%, rgba(0, 100, 180, 0.08) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-}
-
-.snake-page .game-container {
-    max-width: 520px;
-    width: 100%;
-    position: relative;
-    z-index: 1;
-    border: 1px solid rgba(0, 240, 255, 0.15);
-    border-radius: 6px;
-    background: rgba(10, 10, 22, 0.85);
-    box-shadow:
-        0 0 40px rgba(0, 240, 255, 0.06),
-        0 0 80px rgba(0, 100, 200, 0.04),
-        inset 0 0 60px rgba(0, 240, 255, 0.02);
-    backdrop-filter: blur(8px);
-}
-
-/* ---- Cockpit header ---- */
-.cockpit-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 18px;
-    border-bottom: 1px solid rgba(0, 240, 255, 0.2);
-    background: rgba(0, 240, 255, 0.03);
-}
-
-.back-link {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.8em;
-    color: rgba(0, 240, 255, 0.6);
-    text-decoration: none;
-    letter-spacing: 0.1em;
-    padding: 4px 10px;
-    border: 1px solid rgba(0, 240, 255, 0.2);
-    border-radius: 3px;
-    transition: all 0.2s ease;
-}
-
-.back-link:hover {
-    color: #00f0ff;
-    border-color: rgba(0, 240, 255, 0.5);
-    background: rgba(0, 240, 255, 0.08);
-    box-shadow: 0 0 12px rgba(0, 240, 255, 0.15);
-}
-
-.cockpit-title {
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 700;
-    font-size: 1em;
-    letter-spacing: 0.12em;
-    color: #00f0ff;
-    text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
-}
-
-.cockpit-flicker {
-    animation: flicker 3s ease-in-out infinite;
-}
-
-@keyframes flicker {
-    0%, 100% { opacity: 1; }
-    92% { opacity: 1; }
-    93% { opacity: 0.3; }
-    94% { opacity: 1; }
-    96% { opacity: 0.5; }
-    97% { opacity: 1; }
-}
-
-.cockpit-score {
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 600;
-    font-size: 0.8em;
-    letter-spacing: 0.1em;
-    color: rgba(0, 240, 255, 0.6);
-}
-
-.score-value {
-    color: #00f0ff;
-    text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
-}
-
-/* ---- Game viewport ---- */
-.game-viewport {
-    position: relative;
-    padding: 16px;
-    display: flex;
-    justify-content: center;
-}
-
-/* Scanline overlay */
-.scanlines {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0, 0, 0, 0.08) 2px,
-        rgba(0, 0, 0, 0.08) 4px
-    );
-    pointer-events: none;
-    z-index: 10;
-    border-radius: 4px;
-}
-
-#gameCanvas {
-    display: block;
-    border: 2px solid rgba(0, 240, 255, 0.25);
-    border-radius: 4px;
-    box-shadow:
-        0 0 20px rgba(0, 240, 255, 0.1),
-        inset 0 0 30px rgba(0, 240, 255, 0.03);
-    image-rendering: pixelated;
-}
-
-/* Corner brackets for viewport */
-.viewport-corner {
-    position: absolute;
-    width: 14px;
-    height: 14px;
-    border-color: rgba(0, 240, 255, 0.3);
-    border-style: solid;
-    z-index: 5;
-}
-
-.viewport-corner.tl {
-    top: 10px;
-    left: 10px;
-    border-width: 2px 0 0 2px;
-}
-
-.viewport-corner.tr {
-    top: 10px;
-    right: 10px;
-    border-width: 2px 2px 0 0;
-}
-
-.viewport-corner.bl {
-    bottom: 10px;
-    left: 10px;
-    border-width: 0 0 2px 2px;
-}
-
-.viewport-corner.br {
-    bottom: 10px;
-    right: 10px;
-    border-width: 0 2px 2px 0;
-}
-
-/* ---- Controls bar ---- */
-.cockpit-controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 18px;
-    border-top: 1px solid rgba(0, 240, 255, 0.12);
-    background: rgba(0, 240, 255, 0.02);
-}
-
-.control-hint {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.72em;
-    letter-spacing: 0.12em;
-    color: rgba(0, 240, 255, 0.35);
-}
-
-.control-divider {
-    color: rgba(0, 240, 255, 0.15);
-    font-size: 0.6em;
-}
-
-/* ---- Game over overlay ---- */
-.snake-page .game-over {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(10, 10, 22, 0.92);
-    display: none;
-    z-index: 100;
-    backdrop-filter: blur(6px);
-}
-
-.game-over-inner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    width: 80%;
-}
-
-.game-over-glitch {
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 900;
-    font-size: 2.4em;
-    color: #ff3344;
-    letter-spacing: 0.08em;
-    text-shadow:
-        0 0 20px rgba(255, 51, 68, 0.6),
-        0 0 40px rgba(255, 51, 68, 0.3);
-    position: relative;
-    animation: glitchText 2.5s ease-in-out infinite;
-}
-
-@keyframes glitchText {
-    0%, 100% { text-shadow: 0 0 20px rgba(255, 51, 68, 0.6), 0 0 40px rgba(255, 51, 68, 0.3); }
-    90% { text-shadow: 0 0 20px rgba(255, 51, 68, 0.6), 0 0 40px rgba(255, 51, 68, 0.3); }
-    91% { text-shadow: -3px 0 #00f0ff, 3px 0 #ff3344; }
-    93% { text-shadow: 2px 0 #ff3344, -2px 0 #00f0ff; }
-    95% { text-shadow: 0 0 20px rgba(255, 51, 68, 0.6), 0 0 40px rgba(255, 51, 68, 0.3); }
-}
-
-.game-over-score {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.1em;
-    font-weight: 500;
-    color: rgba(0, 240, 255, 0.7);
-    margin: 24px 0;
-    letter-spacing: 0.1em;
-}
-
-.game-over button {
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 600;
-    font-size: 0.85em;
-    letter-spacing: 0.12em;
-    color: #00f0ff;
-    background: transparent;
-    border: 2px solid rgba(0, 240, 255, 0.4);
-    padding: 12px 32px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 4px;
-    text-transform: uppercase;
-}
-
-.game-over button:hover {
-    background: rgba(0, 240, 255, 0.1);
-    border-color: #00f0ff;
-    box-shadow: 0 0 20px rgba(0, 240, 255, 0.2), inset 0 0 20px rgba(0, 240, 255, 0.05);
-    transform: scale(1.05);
-}
-
-/* ============================================
-   SHARED ANIMATIONS
-   ============================================ */
-
-@keyframes fadeDown {
+@keyframes dropIn {
     from {
         opacity: 0;
-        transform: translateY(-16px);
+        transform: translateY(-20px);
     }
     to {
         opacity: 1;
@@ -558,25 +227,282 @@ body {
     }
 }
 
+/* ---- Footer ---- */
+.footer {
+    margin-top: 48px;
+    text-align: center;
+    padding-top: 20px;
+    border-top: 2px solid #f0f0f0;
+}
+
+.footer p {
+    font-family: 'Baloo 2', cursive;
+    font-size: 0.9em;
+    font-weight: 600;
+    color: #aaa;
+    letter-spacing: 0.03em;
+}
+
+/* ---- Menu responsive ---- */
+@media (max-width: 600px) {
+    .home-header h1 {
+        font-size: 2.4em;
+    }
+    .home-header p {
+        font-size: 1.1em;
+    }
+    .games-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .home-container {
+        padding: 36px 18px 28px;
+    }
+}
+
+
 /* ============================================
-   SNAKE PAGE RESPONSIVE
+   SNAKE PAGE — RETRO ARCADE CRT
    ============================================ */
 
-@media (max-width: 540px) {
-    .snake-page .game-container {
+.snake-page {
+    font-family: 'Press Start 2P', monospace;
+    background: #111;
+    color: #33ff66;
+}
+
+/* Arcade cabinet wrapper */
+.arcade-cabinet {
+    width: 480px;
+    max-width: calc(100vw - 24px);
+    background: #1a1a2e;
+    border-radius: 14px;
+    border: 3px solid #333;
+    box-shadow:
+        0 0 0 6px #111,
+        0 0 0 8px #444,
+        0 20px 60px rgba(0, 0, 0, 0.7);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle noise texture on cabinet */
+.arcade-cabinet::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ---- Arcade header ---- */
+.arcade-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    background: #0d0d1a;
+    border-bottom: 2px solid #33ff66;
+    position: relative;
+    z-index: 2;
+}
+
+.back-link {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.55em;
+    color: #33ff66;
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 2px solid #33ff66;
+    transition: all 0.15s ease;
+}
+
+.back-link:hover {
+    background: #33ff66;
+    color: #0d0d1a;
+}
+
+.arcade-title {
+    font-size: 1em;
+    letter-spacing: 0.2em;
+    color: #33ff66;
+    text-shadow:
+        0 0 8px rgba(51, 255, 102, 0.6),
+        0 0 20px rgba(51, 255, 102, 0.3);
+}
+
+.arcade-score {
+    font-size: 0.6em;
+    color: #88ffaa;
+    letter-spacing: 0.1em;
+}
+
+.score-digits {
+    color: #33ff66;
+    text-shadow: 0 0 6px rgba(51, 255, 102, 0.5);
+}
+
+/* ---- CRT screen ---- */
+.crt-screen {
+    position: relative;
+    margin: 14px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #000800;
+    /* CRT curvature via inset shadow */
+    box-shadow:
+        inset 0 0 80px rgba(51, 255, 102, 0.08),
+        inset 0 0 20px rgba(0, 0, 0, 0.9),
+        0 0 15px rgba(51, 255, 102, 0.15);
+}
+
+/* Thick visible scanlines */
+.crt-scanlines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.25) 0px,
+        rgba(0, 0, 0, 0.25) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* Phosphor glow on edges */
+.crt-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+    box-shadow:
+        inset 0 0 50px rgba(51, 255, 102, 0.05),
+        inset 4px 4px 20px rgba(0, 0, 0, 0.6),
+        inset -4px -4px 20px rgba(0, 0, 0, 0.6);
+    pointer-events: none;
+    z-index: 11;
+}
+
+#gameCanvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    image-rendering: pixelated;
+    position: relative;
+    z-index: 1;
+}
+
+/* ---- Arcade footer / controls ---- */
+.arcade-footer {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    padding: 12px 18px;
+    background: #0d0d1a;
+    border-top: 2px solid #33ff66;
+    position: relative;
+    z-index: 2;
+}
+
+.arcade-footer span {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.45em;
+    color: #66cc88;
+    letter-spacing: 0.1em;
+}
+
+/* ---- Game over ---- */
+.snake-page .game-over {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 8, 0, 0.88);
+    display: none;
+    z-index: 100;
+}
+
+.game-over-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 36px 28px;
+    border: 3px solid #33ff66;
+    background: #0a0a14;
+    box-shadow:
+        0 0 30px rgba(51, 255, 102, 0.2),
+        inset 0 0 30px rgba(51, 255, 102, 0.03);
+}
+
+.game-over-box h2 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.4em;
+    color: #ff3344;
+    text-shadow:
+        0 0 10px rgba(255, 51, 68, 0.6),
+        0 0 30px rgba(255, 51, 68, 0.3);
+    margin-bottom: 18px;
+    animation: blink-text 1s step-end infinite;
+}
+
+@keyframes blink-text {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.game-over-box p {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.7em;
+    color: #33ff66;
+    margin-bottom: 24px;
+    letter-spacing: 0.08em;
+}
+
+.game-over-box button {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.6em;
+    color: #0a0a14;
+    background: #33ff66;
+    border: none;
+    padding: 14px 28px;
+    cursor: pointer;
+    letter-spacing: 0.08em;
+    transition: all 0.15s ease;
+    box-shadow: 0 0 12px rgba(51, 255, 102, 0.3);
+}
+
+.game-over-box button:hover {
+    background: #66ffaa;
+    box-shadow: 0 0 24px rgba(51, 255, 102, 0.5);
+    transform: scale(1.05);
+}
+
+/* ---- Snake responsive ---- */
+@media (max-width: 500px) {
+    .arcade-cabinet {
+        border-radius: 8px;
+        border-width: 2px;
+        box-shadow:
+            0 0 0 3px #111,
+            0 0 0 4px #444,
+            0 12px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    .arcade-title {
+        font-size: 0.75em;
+    }
+
+    .arcade-score {
+        font-size: 0.5em;
+    }
+
+    .crt-screen {
         margin: 8px;
-        border-radius: 4px;
     }
 
-    .cockpit-title {
-        font-size: 0.8em;
-    }
-
-    .cockpit-score {
-        font-size: 0.7em;
-    }
-
-    .game-over-glitch {
-        font-size: 1.6em;
+    .game-over-box h2 {
+        font-size: 1em;
     }
 }

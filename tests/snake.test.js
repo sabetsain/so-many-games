@@ -103,6 +103,50 @@ describe('Snake game — game over input blocking', () => {
         intervals.forEach(id => win.clearInterval(id));
     });
 
+    it('should completely ignore all arrow key input after game over', () => {
+        const { win, intervals } = createGameDOM();
+
+        // Start moving right, then trigger game over
+        fireKey(win, 'ArrowRight');
+        win.gameOver();
+
+        const countAfterGameOver = intervals.length;
+
+        // Mash all arrow keys during game over
+        fireKey(win, 'ArrowDown');
+        fireKey(win, 'ArrowLeft');
+        fireKey(win, 'ArrowUp');
+        fireKey(win, 'ArrowRight');
+
+        // No new game loop should have started
+        assert.strictEqual(intervals.length, countAfterGameOver,
+            'No new intervals should be created from arrow keys during game over');
+
+        // The game-over overlay should still be showing
+        const gameOverEl = win.document.getElementById('gameOver');
+        assert.strictEqual(gameOverEl.style.display, 'block',
+            'Game over overlay must remain visible');
+
+        // Now test that direction wasn't silently changed:
+        // Restart, then immediately call update() WITHOUT pressing any arrow key.
+        // If direction was leaked, the snake will move. If properly blocked,
+        // dx/dy are still 0 from restartGame() and the snake stays put.
+        win.restartGame();
+
+        // Don't press any arrow key — just call update directly
+        win.update();
+        win.update();
+        win.update();
+
+        // The snake should still be at start position (10,10) since dx=dy=0
+        // and no direction was set. It should NOT have died.
+        assert.strictEqual(gameOverEl.style.display, 'none',
+            'Snake should be alive — no leaked direction from game-over input');
+
+        // Clean up
+        intervals.forEach(id => win.clearInterval(id));
+    });
+
     it('should allow restarting via restartGame after game over, then arrow keys start a new game', () => {
         const { win, intervals } = createGameDOM();
 

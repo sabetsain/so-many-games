@@ -33,6 +33,9 @@ function handleKeyPress(e) {
         return;
     }
 
+    // Ignore direction changes when game is not actively running
+    if (!gameRunning) return;
+
     // Prevent snake from reversing
     if (e.key === 'ArrowUp' && dy === 0) {
         dx = 0;
@@ -79,7 +82,7 @@ function update() {
     // Check food collision
     if (head.x === food.x && head.y === food.y) {
         score++;
-        scoreElement.textContent = score;
+        scoreElement.textContent = String(score).padStart(3, '0');
         generateFood();
     } else {
         snake.pop();
@@ -89,12 +92,12 @@ function update() {
 }
 
 function draw() {
-    // Clear canvas — deep space black
-    ctx.fillStyle = '#080810';
+    // CRT black background with slight green tint
+    ctx.fillStyle = '#000800';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Draw grid — faint holographic grid lines
-    ctx.strokeStyle = 'rgba(0, 240, 255, 0.06)';
+    // Phosphor green grid — visible, chunky
+    ctx.strokeStyle = 'rgba(51, 255, 102, 0.12)';
     ctx.lineWidth = 1;
     for (let i = 0; i <= tileCount; i++) {
         ctx.beginPath();
@@ -107,24 +110,30 @@ function draw() {
         ctx.stroke();
     }
 
-    // Draw snake — neon cyan with glow
+    // Border glow around play area
+    ctx.strokeStyle = 'rgba(51, 255, 102, 0.3)';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(1, 1, canvas.width - 2, canvas.height - 2);
+
+    // Draw snake — bright phosphor green, chunky blocks
     snake.forEach((segment, index) => {
+        const brightness = Math.max(0.4, 1 - (index / Math.max(snake.length, 1)) * 0.6);
+
         if (index === 0) {
-            // Head — bright cyan with strong glow
-            ctx.fillStyle = '#00f0ff';
-            ctx.shadowBlur = 12;
-            ctx.shadowColor = 'rgba(0, 240, 255, 0.8)';
+            // Head — full bright with heavy glow
+            ctx.fillStyle = '#33ff66';
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = 'rgba(51, 255, 102, 0.9)';
         } else {
-            // Body — dimmer cyan, pulsing subtly
-            const fade = Math.max(0.3, 1 - (index / snake.length) * 0.7);
-            const r = 0;
-            const g = Math.round(200 * fade);
-            const b = Math.round(220 * fade);
-            ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
-            ctx.shadowBlur = 6;
-            ctx.shadowColor = `rgba(0, 200, 255, ${0.4 * fade})`;
+            // Body — dimming phosphor trail
+            const g = Math.round(255 * brightness);
+            const b = Math.round(102 * brightness);
+            ctx.fillStyle = `rgb(20, ${g}, ${b})`;
+            ctx.shadowBlur = 8 * brightness;
+            ctx.shadowColor = `rgba(51, 255, 102, ${0.5 * brightness})`;
         }
 
+        // Chunky pixel blocks with 1px gap
         ctx.fillRect(
             segment.x * gridSize + 1,
             segment.y * gridSize + 1,
@@ -135,18 +144,20 @@ function draw() {
         ctx.shadowBlur = 0;
     });
 
-    // Draw food — pulsing red-orange target
-    const pulse = 0.7 + 0.3 * Math.sin(Date.now() / 200);
-    ctx.fillStyle = '#ff3344';
-    ctx.shadowBlur = 10 * pulse;
-    ctx.shadowColor = 'rgba(255, 51, 68, 0.7)';
-    ctx.fillRect(
-        food.x * gridSize + 3,
-        food.y * gridSize + 3,
-        gridSize - 6,
-        gridSize - 6
-    );
-    ctx.shadowBlur = 0;
+    // Draw food — blinking red pixel
+    const blink = Math.sin(Date.now() / 150) > -0.3;
+    if (blink) {
+        ctx.fillStyle = '#ff3344';
+        ctx.shadowBlur = 12;
+        ctx.shadowColor = 'rgba(255, 51, 68, 0.8)';
+        ctx.fillRect(
+            food.x * gridSize + 2,
+            food.y * gridSize + 2,
+            gridSize - 4,
+            gridSize - 4
+        );
+        ctx.shadowBlur = 0;
+    }
 }
 
 function generateFood() {
@@ -183,7 +194,7 @@ function restartGame() {
     dx = 0;
     dy = 0;
     score = 0;
-    scoreElement.textContent = score;
+    scoreElement.textContent = '000';
     gameOverElement.style.display = 'none';
     gameRunning = false;
     isGameOver = false;
