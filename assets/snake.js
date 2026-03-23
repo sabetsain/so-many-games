@@ -15,13 +15,14 @@ let dx = 0;
 let dy = 0;
 let score = 0;
 let gameRunning = false;
+let isGameOver = false;
 let gameLoop;
 
 // Event listener for keyboard controls
 document.addEventListener('keydown', handleKeyPress);
 
 function handleKeyPress(e) {
-    if (!gameRunning && (e.key === 'ArrowUp' || e.key === 'ArrowDown' || 
+    if (!gameRunning && !isGameOver && (e.key === 'ArrowUp' || e.key === 'ArrowDown' ||
         e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
         startGame();
     }
@@ -88,12 +89,12 @@ function update() {
 }
 
 function draw() {
-    // Clear canvas — aged parchment background
-    ctx.fillStyle = '#f4ead5';
+    // Clear canvas — deep space black
+    ctx.fillStyle = '#080810';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Draw grid (subtle ink grid like graph paper)
-    ctx.strokeStyle = 'rgba(44, 24, 16, 0.06)';
+    // Draw grid — faint holographic grid lines
+    ctx.strokeStyle = 'rgba(0, 240, 255, 0.06)';
     ctx.lineWidth = 1;
     for (let i = 0; i <= tileCount; i++) {
         ctx.beginPath();
@@ -106,34 +107,39 @@ function draw() {
         ctx.stroke();
     }
 
-    // Draw snake (ink-colored, like drawn on paper)
+    // Draw snake — neon cyan with glow
     snake.forEach((segment, index) => {
         if (index === 0) {
-            // Head — dark ink with warm glow
-            ctx.fillStyle = '#2c1810';
-            ctx.shadowBlur = 4;
-            ctx.shadowColor = 'rgba(44, 24, 16, 0.4)';
+            // Head — bright cyan with strong glow
+            ctx.fillStyle = '#00f0ff';
+            ctx.shadowBlur = 12;
+            ctx.shadowColor = 'rgba(0, 240, 255, 0.8)';
         } else {
-            // Body — slightly lighter ink
-            ctx.fillStyle = '#4a3728';
-            ctx.shadowBlur = 2;
-            ctx.shadowColor = 'rgba(44, 24, 16, 0.2)';
+            // Body — dimmer cyan, pulsing subtly
+            const fade = Math.max(0.3, 1 - (index / snake.length) * 0.7);
+            const r = 0;
+            const g = Math.round(200 * fade);
+            const b = Math.round(220 * fade);
+            ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
+            ctx.shadowBlur = 6;
+            ctx.shadowColor = `rgba(0, 200, 255, ${0.4 * fade})`;
         }
 
         ctx.fillRect(
-            segment.x * gridSize + 2,
-            segment.y * gridSize + 2,
-            gridSize - 4,
-            gridSize - 4
+            segment.x * gridSize + 1,
+            segment.y * gridSize + 1,
+            gridSize - 2,
+            gridSize - 2
         );
 
         ctx.shadowBlur = 0;
     });
 
-    // Draw food (red wax seal / berry)
-    ctx.fillStyle = '#8b2500';
-    ctx.shadowBlur = 6;
-    ctx.shadowColor = 'rgba(139, 37, 0, 0.4)';
+    // Draw food — pulsing red-orange target
+    const pulse = 0.7 + 0.3 * Math.sin(Date.now() / 200);
+    ctx.fillStyle = '#ff3344';
+    ctx.shadowBlur = 10 * pulse;
+    ctx.shadowColor = 'rgba(255, 51, 68, 0.7)';
     ctx.fillRect(
         food.x * gridSize + 3,
         food.y * gridSize + 3,
@@ -165,6 +171,7 @@ function generateFood() {
 
 function gameOver() {
     gameRunning = false;
+    isGameOver = true;
     clearInterval(gameLoop);
     finalScoreElement.textContent = score;
     gameOverElement.style.display = 'block';
@@ -179,6 +186,7 @@ function restartGame() {
     scoreElement.textContent = score;
     gameOverElement.style.display = 'none';
     gameRunning = false;
+    isGameOver = false;
     clearInterval(gameLoop);
     draw();
 }

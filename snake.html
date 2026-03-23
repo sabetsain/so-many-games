@@ -3,31 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snake &mdash; The Games Library</title>
+    <title>Snake &mdash; VOTD Games</title>
     <link rel="stylesheet" href="./assets/styles.css">
 </head>
-<body class="paper-bg">
+<body class="snake-page">
     <div class="game-container">
-        <div class="terminal-header">
-            <div class="terminal-dots">
-                <span></span>
-                <span></span>
-                <span></span>
+        <!-- Cockpit header bar -->
+        <div class="cockpit-header">
+            <a href="./index.html" class="back-link">&larr; MENU</a>
+            <div class="cockpit-title">
+                <span class="cockpit-flicker">SYS</span>://SNAKE
             </div>
-            <div class="terminal-title">Chapter I &mdash; Snake</div>
+            <div class="cockpit-score">
+                SCORE: <span id="score" class="score-value">0</span>
+            </div>
         </div>
-        <div class="terminal-body">
-            <a href="./index.html" class="back-link">&larr; Back to the Library</a>
-            <h1>Snake</h1>
-            <div class="score">Score: <span id="score">0</span></div>
+
+        <!-- Game viewport -->
+        <div class="game-viewport">
+            <div class="scanlines"></div>
             <canvas id="gameCanvas" width="400" height="400"></canvas>
-            <div class="controls">Arrow Keys to move &middot; Space to restart</div>
-            <div class="prompt"><span class="cursor"></span></div>
+            <div class="viewport-corner tl"></div>
+            <div class="viewport-corner tr"></div>
+            <div class="viewport-corner bl"></div>
+            <div class="viewport-corner br"></div>
         </div>
+
+        <!-- Controls bar -->
+        <div class="cockpit-controls">
+            <span class="control-hint">[ARROWS] NAVIGATE</span>
+            <span class="control-divider">&bull;</span>
+            <span class="control-hint">[SPACE] RESTART</span>
+        </div>
+
+        <!-- Game over overlay -->
         <div class="game-over" id="gameOver">
-            <h2>The End</h2>
-            <p style="font-size: 1.4em; margin-bottom: 20px;">Final Score: <span id="finalScore">0</span></p>
-            <button onclick="restartGame()">Read Again</button>
+            <div class="game-over-inner">
+                <div class="game-over-glitch" data-text="GAME OVER">GAME OVER</div>
+                <p class="game-over-score">FINAL SCORE: <span id="finalScore">0</span></p>
+                <button onclick="restartGame()">RESTART MISSION</button>
+            </div>
         </div>
     </div>
 

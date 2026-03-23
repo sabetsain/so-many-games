@@ -1,0 +1,15 @@
+{
+  "name": "games",
+  "version": "1.0.0",
+  "description": "A collection of browser-based games that can be hosted on GitHub Pages and embedded in SharePoint.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --test tests/snake.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jsdom": "^24.1.3"
+  }
+}

@@ -3,58 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Games Library</title>
+    <title>VOTD Games</title>
     <link rel="stylesheet" href="./assets/styles.css">
 </head>
-<body class="paper-bg">
+<body class="menu-page">
     <div class="home-container">
         <div class="home-header">
-            <h1>The Games Library</h1>
-            <p>Choose a volume from the collection&hellip;</p>
+            <div class="home-logo">
+                <span class="logo-icon">&#x1F3AE;</span>
+            </div>
+            <h1>VOTD Games</h1>
+            <p>Pick a game. Have some fun.</p>
         </div>
 
-        <!-- Decorative stains for aged paper feel -->
-        <div class="coffee-ring" style="width: 120px; height: 120px; top: 60px; right: 40px;"></div>
-        <div class="ink-stain" style="width: 80px; height: 60px; bottom: 100px; left: 30px;"></div>
-
         <div class="games-grid">
-            <a href="./snake.html" class="game-card">
-                <div class="game-card-header">
-                    <span>Vol. I</span>
-                </div>
+            <a href="./snake.html" class="game-card game-card--red">
+                <div class="game-card-badge">01</div>
                 <div class="game-card-body">
                     <span class="game-card-icon">&#x1F40D;</span>
                     <h2>Snake</h2>
-                    <p>A classic tale of hunger<br>and growing ever longer.<br>Mind the walls.</p>
+                    <p>Eat. Grow. Don't crash.</p>
                 </div>
+                <div class="game-card-action">Play &rarr;</div>
             </a>
 
-            <!-- Coming soon placeholder -->
-            <div class="game-card" style="opacity: 0.45; cursor: not-allowed; pointer-events: none;">
-                <div class="game-card-header">
-                    <span>Vol. II</span>
-                </div>
+            <div class="game-card game-card--blue game-card--locked">
+                <div class="game-card-badge">02</div>
                 <div class="game-card-body">
-                    <span class="game-card-icon">&#x1F4D6;</span>
+                    <span class="game-card-icon">&#x2753;</span>
                     <h2>Coming Soon</h2>
-                    <p>This chapter is still<br>being written&hellip;<br>Check back later.</p>
+                    <p>Something new is brewing.</p>
                 </div>
+                <div class="game-card-action">Soon</div>
             </div>
 
-            <div class="game-card" style="opacity: 0.45; cursor: not-allowed; pointer-events: none;">
-                <div class="game-card-header">
-                    <span>Vol. III</span>
-                </div>
+            <div class="game-card game-card--yellow game-card--locked">
+                <div class="game-card-badge">03</div>
                 <div class="game-card-body">
-                    <span class="game-card-icon">&#x1F4D6;</span>
+                    <span class="game-card-icon">&#x2753;</span>
                     <h2>Coming Soon</h2>
-                    <p>This chapter is still<br>being written&hellip;<br>Check back later.</p>
+                    <p>Stay tuned for more.</p>
                 </div>
+                <div class="game-card-action">Soon</div>
             </div>
         </div>
 
         <div class="footer">
-            <p>From the shelves of the VOTD Library &mdash; est. 2025</p>
+            <p>VOTD Games &mdash; 2025</p>
         </div>
     </div>
 </body>
